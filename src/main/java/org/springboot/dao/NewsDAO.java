@@ -10,7 +10,7 @@ import java.util.List;
  * Created by lxh on 2017/5/3.
  */
 @Mapper
-public interface NewsDao {
+public interface NewsDAO {
 
     int addNews(News news);
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="org.springboot.dao.UserDao">
+<mapper namespace="org.springboot.dao.UserDAO">
     <insert id="addUser" parameterType="org.springboot.entity.User">
         insert into user
          (
@@ -20,5 +20,12 @@
           id, name, password, salt, head_url
           from user
            where id = #{id}
+    </select>
+
+    <select id="queryName" resultType="org.springboot.entity.User">
+        select
+          id, name, password, salt, head_url
+          from user
+           where name = #{name}
     </select>
 </mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.springboot.dao.LoginTicketDAO">
+
+    <sql id="table">login_ticket</sql>
+    <sql id="selectFields">id, user_id, ticket, expired, status</sql>
+    <sql id="insertFields">user_id, ticket, expired, status</sql>
+
+    <insert id="addTicket" parameterType="org.springboot.entity.LoginTicket"
+            useGeneratedKeys="true" keyProperty="id" >
+        INSERT INTO <include refid="table"/>
+        (
+            <include refid="insertFields"/>
+        )
+        VALUES
+        (
+            <!--  LoginTicket对象对应的成员变量值 -->
+            #{userId},#{ticket},#{expired},#{status}
+        )
+    </insert>
+
+    <select id="selectByTicket" resultType="org.springboot.entity.LoginTicket">
+        SELECT <include refid="selectFields"/>
+        FROM <include refid="table"/>
+        WHERE ticket = #{ticket}
+    </select>
+
+    <update id="updateStatus" parameterType="org.springboot.entity.LoginTicket">
+        UPDATE <include refid="table"/>
+        SET
+          status = #{status}
+        WHERE ticket = #{ticket}
+    </update>
+
+</mapper>

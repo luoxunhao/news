@@ -6,18 +6,16 @@ import org.springboot.NewsApplication;
 import org.springboot.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = NewsApplication.class)
-public class UserDaoTest {
+public class UserDAOTest {
+
     @Autowired
-    private UserDao userDao;
+    private UserDAO userDAO;
 
     @Test
     public void addUser() throws Exception {
@@ -28,14 +26,21 @@ public class UserDaoTest {
             user.setName(String.format("USER%d", i));
             user.setPassword("");
             user.setSalt("");
-            userDao.addUser(user);
+            userDAO.addUser(user);
         }
     }
 
     @Test
     public void queryById() throws Exception {
         int id = 1;
-        User user = userDao.queryById(id);
+        User user = userDAO.queryById(id);
+        System.out.println(user);
+    }
+
+    @Test
+    public void queryName() throws Exception {
+        String name = "USER0";
+        User user = userDAO.queryName(name);
         System.out.println(user);
     }
 }

@@ -12,13 +12,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = NewsApplication.class)
-public class NewsDaoTest {
+public class NewsDAOTest {
     @Autowired
-    private NewsDao newsDao;
+    private NewsDAO newsDAO;
 
     @Test
     public void addNews() throws Exception {
@@ -34,7 +32,7 @@ public class NewsDaoTest {
             news.setUserId(2);
             news.setTitle(String.format("TITLE{%d}", i));
             news.setLink(String.format("http://www.nowcoder.com/%d.html", i));
-            newsDao.addNews(news);
+            newsDAO.addNews(news);
         }
     }
 
@@ -43,7 +41,7 @@ public class NewsDaoTest {
         int userId = 0;
         int offset = 3;
         int limit = 10;
-        List<News> newsList = newsDao.queryList(userId, offset, limit);
+        List<News> newsList = newsDAO.queryList(userId, offset, limit);
         for (News news : newsList){
             System.out.println(news);
         }
@@ -52,7 +50,7 @@ public class NewsDaoTest {
     @Test
     public void queryById() throws Exception {
         int id = 2;
-        News news = newsDao.queryById(id);
+        News news = newsDAO.queryById(id);
         System.out.println(news);
     }
 
