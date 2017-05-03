@@ -40,9 +40,9 @@ public class NewsDaoTest {
 
     @Test
     public void queryList() throws Exception {
-        int userId = 2;
+        int userId = 0;
         int offset = 3;
-        int limit = 2;
+        int limit = 10;
         List<News> newsList = newsDao.queryList(userId, offset, limit);
         for (News news : newsList){
             System.out.println(news);
