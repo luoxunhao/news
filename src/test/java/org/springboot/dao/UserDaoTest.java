@@ -13,10 +13,6 @@ import java.util.Random;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by lxh on 2017/5/3.
- */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = NewsApplication.class)
 public class UserDaoTest {

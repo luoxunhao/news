@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.springboot.dao.NewsDao">
+    <insert id="addNews" parameterType="org.springboot.entity.News">
+        insert into news
+        (
+          title, link, image, like_count, comment_count,created_date,user_id
+        )
+        values
+        (
+          #{title}, #{link}, #{image}, #{likeCount}, #{commentCount},#{createdDate},#{userId}
+        )
+    </insert>
+
+    <select id="queryList" resultType="org.springboot.entity.News">
+        select
+          id,title, link, image, like_count, comment_count,created_date,user_id
+          from news
+          <if test="userId != 0">
+            WHERE user_id = #{userId}
+          </if>
+          order by id desc
+          limit #{offset},#{limit}
+    </select>
+
+    <select id="queryById" resultType="org.springboot.entity.News">
+        select
+        id,title, link, image, like_count, comment_count,created_date,user_id
+          from news
+          where id = #{id}
+    </select>
+
+</mapper>
