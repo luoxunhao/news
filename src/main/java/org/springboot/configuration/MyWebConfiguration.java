@@ -1,6 +1,7 @@
 package org.springboot.configuration;
 
 
+import org.springboot.interceptor.LoginRequiredInterceptor;
 import org.springboot.interceptor.PassportInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,21 +20,15 @@ public class MyWebConfiguration extends WebMvcConfigurerAdapter {
     @Autowired
     PassportInterceptor passportInterceptor;
 
-    //@Autowired
-    //LoginRequiredInterceptor loginRequiredInterceptor;
+    @Autowired
+    LoginRequiredInterceptor loginRequiredInterceptor;
 
-    //@Autowired
-    //AdminInterceptor adminInterceptor;
 
-    //@Autowired
-    //EncodeInterceptor encodeInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(passportInterceptor);
-        //registry.addInterceptor(encodeInterceptor);
-        //registry.addInterceptor(loginRequiredInterceptor).addPathPatterns("/setting*");
-        //registry.addInterceptor(adminInterceptor).addPathPatterns("/admin*");
+        registry.addInterceptor(loginRequiredInterceptor).addPathPatterns("/setting*");
         super.addInterceptors(registry);
     }
 }
