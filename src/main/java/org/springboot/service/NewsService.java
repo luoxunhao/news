@@ -57,4 +57,8 @@ public class NewsService {
         return fileURLS;
     }
 
+    public int updateCommentCount(int id, int count) {
+        return newsDAO.updateCommentCount(id, count);
+    }
+
 }

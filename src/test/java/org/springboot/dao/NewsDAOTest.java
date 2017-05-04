@@ -15,6 +15,7 @@ import java.util.Random;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = NewsApplication.class)
 public class NewsDAOTest {
+
     @Autowired
     private NewsDAO newsDAO;
 
@@ -51,6 +52,15 @@ public class NewsDAOTest {
     public void queryById() throws Exception {
         int id = 2;
         News news = newsDAO.queryById(id);
+        System.out.println(news);
+    }
+
+    @Test
+    public void updateCommentCount() throws Exception {
+        int id = 1;
+        int count = 5;
+        newsDAO.updateCommentCount(id, count);
+        News news = newsDAO.queryById(1);
         System.out.println(news);
     }
 

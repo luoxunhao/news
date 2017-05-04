@@ -7,9 +7,6 @@ import org.slf4j.LoggerFactory;
 import java.security.MessageDigest;
 import java.util.Map;
 
-/**
- * Created by lxh on 2017/3/4.
- */
 public class ToutiaoUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(ToutiaoUtil.class);

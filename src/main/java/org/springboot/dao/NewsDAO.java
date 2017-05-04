@@ -19,4 +19,6 @@ public interface NewsDAO {
                          @Param("limit") int limit);
 
     News queryById(@Param("id") int id);
+
+    int updateCommentCount(@Param("id") int id, @Param("count") int count);
 }

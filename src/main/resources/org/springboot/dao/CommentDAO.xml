@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.springboot.dao.CommentDAO">
+
+    <insert id="addComment" parameterType="org.springboot.entity.Comment">
+        insert into comment
+          (
+            user_id, content, created_date, entity_id, entity_type, status
+          )
+          values
+          (
+            #{userId},#{content},#{createdDate},#{entityId},#{entityType},#{status}
+          )
+    </insert>
+
+    <select id="selectByEntity" resultType="org.springboot.entity.Comment">
+        select
+          id, user_id, content, created_date, entity_id, entity_type, status
+          from comment
+          where entity_type=#{entityType} and entity_id=#{entityId}
+          order by id desc
+    </select>
+
+    <select id="getCommentCount" resultType="int">
+        select count(id)
+          from comment
+          where entity_type=#{entityType} and entity_id=#{entityId}
+    </select>
+</mapper>
