@@ -2,6 +2,7 @@ package org.springboot.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springboot.entity.HostHolder;
 import org.springboot.service.UserService;
 import org.springboot.util.ToutiaoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-
+    @Autowired
+    private HostHolder hostHolder;
 
     @RequestMapping(path = {"/reg/"}, method = {RequestMethod.POST})
     @ResponseBody
@@ -35,9 +37,12 @@ public class LoginController {
         try {
             Map<String, Object> map = userService.register(username, password);
             if (map.containsKey("ticket")) {
+                //注册成功，浏览器下发一个Cookie给服务器，用于登录验证
                 Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
+                //Cookie全站有效
                 cookie.setPath("/");
                 if (rememberme > 0) {
+                    //Cookie有效期
                     cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
@@ -61,6 +66,7 @@ public class LoginController {
         try {
             Map<String, Object> map = userService.login(username, password);
             if (map.containsKey("ticket")) {
+                //登录成功，浏览器下发一个Cookie给服务器，用于登录验证
                 Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
                 cookie.setPath("/");
                 if (rememberme > 0) {

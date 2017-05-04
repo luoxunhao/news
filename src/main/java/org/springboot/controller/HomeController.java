@@ -2,6 +2,7 @@ package org.springboot.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springboot.entity.HostHolder;
 import org.springboot.entity.News;
 import org.springboot.entity.ViewObject;
 import org.springboot.service.NewsService;
@@ -28,6 +29,9 @@ public class HomeController {
     @Autowired
     private NewsService newsService;
 
+    @Autowired
+    private HostHolder hostHolder;
+
     private List<ViewObject> getNews(int userId, int offset, int limit) {
         List<News> newsList = newsService.getLatestNews(userId, offset, limit);
         //int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;
@@ -52,10 +56,9 @@ public class HomeController {
     public String index(Model model,
                         @RequestParam(value = "pop", defaultValue = "0") int pop) {
         model.addAttribute("vos", getNews(0, 0, 10));
-        /*
         if (hostHolder.getUser() != null) {
             pop = 0;
-        }*/
+        }
         model.addAttribute("pop", pop);
         return "home";
     }

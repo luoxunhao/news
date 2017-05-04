@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class HostHolder {
+    //存储当前线程的变量，每一条线程只能读取自己的ThreadLocal变量
     private static ThreadLocal<User> users = new ThreadLocal<User>();
 
     public User getUser() {

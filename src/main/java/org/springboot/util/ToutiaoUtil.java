@@ -8,27 +8,34 @@ import java.security.MessageDigest;
 import java.util.Map;
 
 /**
- * Created by nowcoder on 2016/7/3.
+ * Created by lxh on 2017/3/4.
  */
 public class ToutiaoUtil {
+
     private static final Logger logger = LoggerFactory.getLogger(ToutiaoUtil.class);
 
-    public static String TOUTIAO_DOMAIN = "http://127.0.0.1:8080/";
-    public static String IMAGE_DIR = "D:/upload/";
-    public static String[] IMAGE_FILE_EXTD = new String[] {"png", "bmp", "jpg", "jpeg"};
+    public static int ANONYMOUS_USER_ID = 3;
 
-    public static boolean isFileAllowed(String fileName) {
-        for (String ext : IMAGE_FILE_EXTD) {
-            if (ext.equals(fileName)) {
+    public static String QINIU_IMAGE_DOMAIN = "http://on1z3h0ol.bkt.clouddn.com/";
+    public static String TOUTIAO_DOMAIN = "http://127.0.0.1:8080/";
+
+    private static String[] IMAGE_FILE_EXTD = {"png", "bmp", "jpeg", "jpg"}; //数量较小，可以不考虑哈希表
+    public static String LOCAL_IMAGE_SERVER_PATH = "D:/upload/";
+
+
+    public static boolean isFileAllowed(String fileExt){
+        for (String ext : IMAGE_FILE_EXTD){
+            if (ext.equals(fileExt)){
                 return true;
             }
         }
         return false;
     }
-    public static String getJSONString(int code) {
+
+    public static String getJSONString(int code){
         JSONObject json = new JSONObject();
         json.put("code", code);
-        return json.toJSONString();
+        return json.toString();
     }
 
     public static String getJSONString(int code, String msg) {
