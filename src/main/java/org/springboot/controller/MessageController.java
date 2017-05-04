@@ -69,10 +69,6 @@ public class MessageController {
                 int targetId = msg.getFromId() == localUserId ? msg.getToId() : msg.getFromId();
                 User user = userService.getUser(targetId);
                 vo.set("user", user);
-                //vo.set("headUrl", user.getHeadUrl());
-                //vo.set("userName", user.getName());
-                //vo.set("targetId", targetId);
-                //vo.set("totalCount", msg.getId());
                 vo.set("unreadCount", messageService.getUnreadCount(localUserId, msg.getConversationId()));
                 conversations.add(vo);
             }
