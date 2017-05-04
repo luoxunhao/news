@@ -53,6 +53,7 @@ public class UserService {
         userDAO.addUser(user);
 
         // 登陆
+        user = userDAO.queryName(username);
         String ticket = addLoginTicket(user.getId());
         map.put("ticket", ticket);
         return map;
