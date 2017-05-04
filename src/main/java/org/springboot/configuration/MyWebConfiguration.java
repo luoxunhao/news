@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * Created by lxh on 2017/3/7.
+ * 注册拦截器
  */
 
 
