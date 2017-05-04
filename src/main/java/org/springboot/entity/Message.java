@@ -66,4 +66,21 @@ public class Message {
         }
         return String.format("%d_%d", toId, fromId);
     }
+
+    public void setConversationId(String conversationId) {
+        this.conversationId = conversationId;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", fromId=" + fromId +
+                ", toId=" + toId +
+                ", content='" + content + '\'' +
+                ", createdDate=" + createdDate +
+                ", hasRead=" + hasRead +
+                ", conversationId='" + conversationId + '\'' +
+                '}';
+    }
 }

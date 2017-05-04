@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.springboot.dao.MessageDAO">
+
+    <insert id="addMessage" parameterType="org.springboot.entity.Message">
+        insert into message
+        (
+          from_id, to_id, content, has_read, conversation_id, created_date
+        )
+        values
+        (
+          #{fromId},#{toId},#{content},#{hasRead},#{conversationId},#{createdDate}
+        )
+    </insert>
+
+    <select id="getConversationDetail" resultType="org.springboot.entity.Message">
+        select
+          id, from_id, to_id, content, has_read, conversation_id, created_date
+          from message
+          where conversation_id=#{conversationId}
+          order by id desc
+          limit #{offset}, #{limit}
+    </select>
+
+    <select id="getConversationTotalCount" resultType="int">
+        select count(id)
+          from message
+    </select>
+
+    <select id="getConversationList" resultType="org.springboot.entity.Message">
+        select
+          from_id, to_id, content, has_read, conversation_id, created_date, count(id) as id
+          from (select * from message
+            where from_id=#{userId} or to_id=#{userId}
+            order by id desc) tt
+            group by conversation_id
+            order by id desc
+            limit #{offset},#{limit}
+    </select>
+
+    <select id="getConversationUnReadCount" resultType="int">
+        select count(id) from message
+          where has_read = 0 and to_id=#{userId} and conversation_id=#{conversationId}
+    </select>
+
+</mapper>
