@@ -38,4 +38,9 @@
           where id = #{id}
     </update>
 
+    <update id="updateLikeCount">
+        update news
+        set like_count = #{count}
+        where id = #{id}
+    </update>
 </mapper>

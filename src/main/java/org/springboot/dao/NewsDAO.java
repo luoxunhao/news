@@ -21,4 +21,6 @@ public interface NewsDAO {
     News queryById(@Param("id") int id);
 
     int updateCommentCount(@Param("id") int id, @Param("count") int count);
+
+    int updateLikeCount(@Param("id") int id, @Param("count") int count);
 }
