@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
-
 @Controller
 public class NewsController {
 

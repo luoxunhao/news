@@ -47,6 +47,7 @@ public class RedisDAO implements InitializingBean{
         }
     }
 
+    //集合
     public long sadd(String key, String value) {
         Jedis jedis = null;
         try {
@@ -62,6 +63,7 @@ public class RedisDAO implements InitializingBean{
         }
     }
 
+    //集合
     public long srem(String key, String value) {
         Jedis jedis = null;
         try {
@@ -77,6 +79,7 @@ public class RedisDAO implements InitializingBean{
         }
     }
 
+    //集合
     public boolean sismember(String key, String value) {
         Jedis jedis = null;
         try {
@@ -92,6 +95,7 @@ public class RedisDAO implements InitializingBean{
         }
     }
 
+    //集合
     public long scard(String key) {
         Jedis jedis = null;
         try {
@@ -107,6 +111,7 @@ public class RedisDAO implements InitializingBean{
         }
     }
 
+    //集合
     public void setex(String key, String value) {
         // 验证码, 防机器注册，记录上次注册时间，有效期3天
         Jedis jedis = null;
@@ -122,6 +127,7 @@ public class RedisDAO implements InitializingBean{
         }
     }
 
+    //队列
     public long lpush(String key, String value) {
         Jedis jedis = null;
         try {
@@ -137,6 +143,7 @@ public class RedisDAO implements InitializingBean{
         }
     }
 
+    //从队列右边取出元素
     public List<String> brpop(int timeout, String key) {
         Jedis jedis = null;
         try {
@@ -152,10 +159,12 @@ public class RedisDAO implements InitializingBean{
         }
     }
 
+    //JSON序列化
     public void setObject(String key, Object obj) {
         set(key, JSON.toJSONString(obj));
     }
 
+    //JSON反序列化
     public <T> T getObject(String key, Class<T> clazz) {
         String value = get(key);
         if (value != null) {

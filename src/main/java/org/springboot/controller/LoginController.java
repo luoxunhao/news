@@ -2,6 +2,9 @@ package org.springboot.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springboot.async.EventModel;
+import org.springboot.async.EventProducer;
+import org.springboot.async.EventType;
 import org.springboot.entity.HostHolder;
 import org.springboot.service.UserService;
 import org.springboot.util.ToutiaoUtil;
@@ -26,6 +29,9 @@ public class LoginController {
 
     @Autowired
     private HostHolder hostHolder;
+
+    @Autowired
+    EventProducer eventProducer;
 
     @RequestMapping(path = {"/reg/"}, method = {RequestMethod.POST})
     @ResponseBody
@@ -73,11 +79,9 @@ public class LoginController {
                     cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
-                /*
                 eventProducer.fireEvent(new EventModel(EventType.LOGIN)
                         .setActorId((int) map.get("userId"))
-                        .setExt("username", username).setExt("email", "zjuyxy@qq.com"));
-                        */
+                        .setExt("username", username).setExt("email", "1215070400@qq.com"));
                 return ToutiaoUtil.getJSONString(0, "成功");
             } else {
                 return ToutiaoUtil.getJSONString(1, map);
