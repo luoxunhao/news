@@ -8,8 +8,7 @@
     <sql id="selectFields">id, user_id, ticket, expired, status</sql>
     <sql id="insertFields">user_id, ticket, expired, status</sql>
 
-    <insert id="addTicket" parameterType="org.springboot.entity.LoginTicket"
-            useGeneratedKeys="true" keyProperty="id" >
+    <insert id="addTicket" parameterType="org.springboot.entity.LoginTicket" keyProperty="id" >
         INSERT INTO <include refid="table"/>
         (
             <include refid="insertFields"/>

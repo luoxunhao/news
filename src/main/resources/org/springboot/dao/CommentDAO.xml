@@ -4,7 +4,7 @@
 
 <mapper namespace="org.springboot.dao.CommentDAO">
 
-    <insert id="addComment" parameterType="org.springboot.entity.Comment">
+    <insert id="addComment" parameterType="org.springboot.entity.Comment" keyProperty="id">
         insert into comment
           (
             user_id, content, created_date, entity_id, entity_type, status

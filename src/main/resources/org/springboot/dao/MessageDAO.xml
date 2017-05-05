@@ -4,7 +4,7 @@
 
 <mapper namespace="org.springboot.dao.MessageDAO">
 
-    <insert id="addMessage" parameterType="org.springboot.entity.Message">
+    <insert id="addMessage" parameterType="org.springboot.entity.Message" keyProperty="id">
         insert into message
         (
           from_id, to_id, content, has_read, conversation_id, created_date
@@ -29,7 +29,7 @@
           from message
     </select>
 
-    <select id="getConversationList" resultType="org.springboot.entity.Message">
+    <select id="getConversationList" resultType="org.springboot.entity.Message" >
         select
           from_id, to_id, content, has_read, conversation_id, created_date, count(id) as id
           from (select * from message

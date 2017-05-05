@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="org.springboot.dao.NewsDAO">
-    <insert id="addNews" parameterType="org.springboot.entity.News">
+    <insert id="addNews" parameterType="org.springboot.entity.News" keyProperty="id">
         insert into news
         (
           title, link, image, like_count, comment_count,created_date,user_id
